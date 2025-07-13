@@ -1,1 +1,96 @@
+<header class="bg-white/70 fixed z-50 left-1/2 -translate-x-1/2 top-4 flex items-center gap-8 border border-white shadow-2xl shadow-black/10 backdrop-blur-lg max-w-max p-2 px-4 rounded-full">
+  <.link navigate={~p"/"} class="flex items-center gap-1 text-xl text-primary-500 font-semibold">
+    <img class="size-8" src="/images/logo.png" alt="Cafein Logo" /> Cafein
+  </.link>
+  <nav class="border-x px-8 flex items-center gap-8 border-gray-300">
+    <.link class="text-zinc-500 whitespace-nowrap hover:text-primary-600">
+      Home
+    </.link>
+    <.link class="text-zinc-500 whitespace-nowrap hover:text-primary-600">
+      How it works
+    </.link>
+    <.link class="text-zinc-500 whitespace-nowrap hover:text-primary-600">
+      Docs
+    </.link>
+    <.link class="text-zinc-500 whitespace-nowrap hover:text-primary-600">
+      Privacy
+    </.link>
+  </nav>
+  <nav class="flex items-center gap-1">
+    <a
+      class="inline-flex items-center text-sm h-10 whitespace-nowrap px-4 rounded-lg border border-gray-400 gap-1 text-gray-600 hover:bg-gray-200 transition-all"
+      href="https://github.com/compilecafe/cafein"
+    >
+      <iconify-icon class="text-lg" icon="tabler:brand-github"></iconify-icon>
+      {@github_stars} Stars
+    </a>
+    <.link class="text-sm bg-primary-500 whitespace-nowrap text-primary-50 inline-flex h-10 px-4 rounded-lg items-center hover:bg-primary-600 transition-all">
+      Get Started
+    </.link>
+  </nav>
+</header>
 {@inner_content}
+<footer class="py-12">
+  <div class="container">
+    <div class="bg-white/60 border-2 shadow-2xl shadow-black/5 border-white p-12 rounded-3xl">
+      <div class="flex gap-12">
+        <div class="grow space-y-4">
+          <div class="flex items-center gap-1 text-xl text-primary-500 font-semibold">
+            <img class="size-8" src="/images/logo.png" alt="Cafein Logo" /> Cafein
+          </div>
+          <p class="max-w-sm">
+            Privacy-first SSO that just works. Built with love, open source, and no email spam.
+          </p>
+        </div>
+        <div class="flex flex-col gap-4">
+          <span>Pages</span>
+          <nav class="flex flex-col gap-2">
+            <.link class="text-zinc-500 hover:text-primary-600">
+              Home
+            </.link>
+            <.link class="text-zinc-500 hover:text-primary-600">
+              How it works
+            </.link>
+            <.link class="text-zinc-500 hover:text-primary-600">
+              Integration & Docs
+            </.link>
+            <.link class="text-zinc-500 hover:text-primary-600">
+              Privacy & Philosophy
+            </.link>
+          </nav>
+        </div>
+        <div class="flex flex-col gap-4">
+          <span>Developers</span>
+          <nav class="flex flex-col gap-2">
+            <.link class="text-zinc-500 hover:text-primary-600">
+              GitHub
+            </.link>
+            <.link class="text-zinc-500 hover:text-primary-600">
+              Status page
+            </.link>
+            <.link class="text-zinc-500 hover:text-primary-600">
+              Standards we support
+            </.link>
+          </nav>
+        </div>
+        <div class="flex flex-col gap-4">
+          <span>Cafein</span>
+          <nav class="flex flex-col gap-2">
+            <.link class="text-zinc-500 hover:text-primary-600">
+              About
+            </.link>
+            <.link class="text-zinc-500 hover:text-primary-600">
+              Open source
+            </.link>
+            <.link class="text-zinc-500 hover:text-primary-600">
+              Community
+            </.link>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <p class="text-center mt-12 text-sm text-gray-500">
+      Made with ☕ by the Cafein team · © 2025 Compile Cafe
+    </p>
+  </div>
+</footer>

@@ -11,7 +11,12 @@
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
   </head>
-  <body class="bg-white">
-    {@inner_content}
+  <body class="bg-[#F0E4D3]">
+    <img
+      class="fixed size-full object-cover mix-blend-overlay"
+      src="/images/decorations/noise.jpg"
+      alt=""
+    />
+    <div class="relative">{@inner_content}</div>
   </body>
 </html>
