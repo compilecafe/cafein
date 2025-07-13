@@ -35,3 +35,6 @@ cafein-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Environtment Variable
+.env*
+!.env.example
