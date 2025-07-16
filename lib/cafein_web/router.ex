@@ -17,7 +17,7 @@ defmodule CafeinWeb.Router do
   scope "/", CafeinWeb do
     pipe_through :browser
 
-    live "/", UserLive.Index, :index
+    live "/", HomeLive.Index, :index
   end
 
   # Other scopes may use custom stacks.
