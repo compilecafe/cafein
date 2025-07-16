@@ -1,0 +1,67 @@
+<main class="min-h-dvh flex items-center">
+  <div class="max-w-6xl mx-auto p-8 grid grid-cols-2 items-center gap-10">
+    <div class="aspect-square">
+      <img class="size-full" src="/images/decorations/character-unboxing.svg" alt="" />
+    </div>
+    <div class="space-y-6">
+      <.link class="inline-block" navigate={~p"/"}>
+        <img class="size-16" src="/images/logo.png" alt="Cafein Logo" />
+      </.link>
+      <div class="space-y-1">
+        <h1 class="text-6xl">
+          Let’s get you started
+        </h1>
+        <p class="text-xl">
+          Just a username and password, that’s it
+        </p>
+      </div>
+      <form action="" class="space-y-4">
+        <div class="grid gap-1">
+          <label for="username" class="font-medium text-zinc-500">Pick a username</label>
+          <div class="relative">
+            <input
+              class="h-14 peer pr-6 pl-12 w-full focus:outline-none ring-4 ring-transparent focus:border-primary-600 focus:ring-primary-600/10 transition-all rounded-xl border border-zinc-300"
+              placeholder="makeitfunny123"
+              type="text"
+              name="username"
+              id="username"
+            />
+            <iconify-icon
+              class="absolute left-4.5 top-4.5 text-xl text-zinc-500 peer-focus:text-primary-600"
+              icon="solar:paw-linear"
+            >
+            </iconify-icon>
+          </div>
+        </div>
+        <div class="grid gap-1">
+          <label for="password" class="font-medium text-zinc-500">Create a password</label>
+          <div class="relative">
+            <input
+              class="h-14 peer pr-6 pl-12 w-full focus:outline-none ring-4 ring-transparent focus:border-primary-600 focus:ring-primary-600/10 transition-all rounded-xl border border-zinc-300"
+              placeholder="something secret"
+              type="password"
+              name="password"
+              id="password"
+            />
+            <iconify-icon
+              class="absolute left-4.5 top-4.5 text-xl text-zinc-500 peer-focus:text-primary-600"
+              icon="solar:lock-password-linear"
+            >
+            </iconify-icon>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <button class="h-14 px-6 rounded-xl bg-primary-600 hover:bg-primary-700 transition-all items-center ring-4 inline-flex ring-transparent focus:ring-primary-600/20 focus:outline-none text-primary-50">
+            Create account
+          </button>
+          <p>
+            Already have an account?
+            <.link navigate={~p"/auth/sign-in"} class="text-primary-600 hover:underline">
+              Sign in here
+            </.link>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
