@@ -1,4 +1,4 @@
-defmodule CafeinWeb.HomeLive.Index do
+defmodule CafeinWeb.PagesLive.Index do
   use CafeinWeb, :live_view
 
   @impl true

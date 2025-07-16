@@ -30,7 +30,10 @@
       <iconify-icon class="text-xl" icon="tabler:brand-github"></iconify-icon>
       {@github_stars} Stars
     </a>
-    <.link class="text-sm bg-primary-500 whitespace-nowrap text-primary-50 inline-flex h-10 px-4 rounded-lg items-center hover:bg-primary-600 transition-all">
+    <.link
+      navigate={~p"/auth/create-account"}
+      class="text-sm bg-primary-500 whitespace-nowrap text-primary-50 inline-flex h-10 px-4 rounded-lg items-center hover:bg-primary-600 transition-all"
+    >
       Get Started
     </.link>
   </nav>
