@@ -1,4 +1,4 @@
-defmodule CafeinWeb.PagesLive.Auth.CreateAccount.Index do
+defmodule CafeinWeb.PagesLive.Auth.SignIn.Index do
   use CafeinWeb, :live_view
 
   @impl true
