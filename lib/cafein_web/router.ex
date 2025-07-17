@@ -22,6 +22,7 @@ defmodule CafeinWeb.Router do
     scope "/auth", PagesLive.Auth do
       live "/create-account", CreateAccount.Index, :index
       live "/sign-in", SignIn.Index, :index
+      live "/select-profile", SelectProfile.Index, :index
     end
   end
 
