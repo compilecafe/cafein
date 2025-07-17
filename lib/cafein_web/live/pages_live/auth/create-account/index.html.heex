@@ -11,16 +11,24 @@
         Just a username and password, that’s it
       </p>
     </div>
-    <form action="" class="space-y-4">
+    <.form
+      :let={f}
+      for={@form}
+      as={:account}
+      phx-change="validate"
+      phx-submit="save"
+      class="space-y-4"
+    >
       <div class="grid gap-1">
-        <label for="username" class="font-medium text-zinc-500">Pick a username</label>
+        <label for={f[:username].id} class="font-medium text-zinc-500">Pick a username</label>
         <div class="relative">
           <input
             class="h-14 peer pr-6 pl-12 w-full focus:outline-none ring-4 ring-transparent focus:border-primary-500 focus:ring-primary-500/10 transition-all rounded-xl border border-zinc-300"
             placeholder="makeitfunny123"
             type="text"
-            name="username"
-            id="username"
+            id={f[:username].id}
+            name={f[:username].name}
+            value={f[:username].value}
           />
           <iconify-icon
             class="absolute left-4.5 top-4.5 text-xl text-zinc-500 peer-focus:text-primary-500"
@@ -28,16 +36,26 @@
           >
           </iconify-icon>
         </div>
+        <% error = List.first(f[:username].errors) %>
+        <p
+          :if={Phoenix.Component.used_input?(f[:username]) and error}
+          class="text-red-500 text-sm mt-1"
+        >
+          {elem(error, 0)}
+        </p>
       </div>
       <div class="grid gap-1">
-        <label for="password" class="font-medium text-zinc-500">Create a password</label>
+        <label for={f[:password].id} class="font-medium text-zinc-500">
+          Create a password
+        </label>
         <div class="relative">
           <input
             class="h-14 peer pr-6 pl-12 w-full focus:outline-none ring-4 ring-transparent focus:border-primary-500 focus:ring-primary-500/10 transition-all rounded-xl border border-zinc-300"
             placeholder="something secret"
             type="password"
-            name="password"
-            id="password"
+            id={f[:password].id}
+            name={f[:password].name}
+            value={f[:password].value}
           />
           <iconify-icon
             class="absolute left-4.5 top-4.5 text-xl text-zinc-500 peer-focus:text-primary-500"
@@ -45,6 +63,13 @@
           >
           </iconify-icon>
         </div>
+        <% error = List.first(f[:password].errors) %>
+        <p
+          :if={Phoenix.Component.used_input?(f[:password]) and error}
+          class="text-red-500 text-sm mt-1"
+        >
+          {elem(error, 0)}
+        </p>
       </div>
       <button class="h-14 px-6 rounded-xl bg-primary-500 hover:bg-primary-600 transition-all items-center ring-4 inline-flex ring-transparent focus:ring-primary-500/20 focus:outline-none text-primary-50">
         Create account
@@ -55,6 +80,6 @@
           Sign in here
         </.link>
       </p>
-    </form>
+    </.form>
   </div>
 </main>
