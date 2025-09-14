@@ -1,0 +1,150 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@utility container {
+	@apply mx-auto px-8;
+}
+
+@font-face {
+	font-family: 'Mona Sans Variable';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 200 900;
+	src: url(https://cdn.jsdelivr.net/fontsource/fonts/mona-sans:vf@latest/latin-wght-normal.woff2)
+		format('woff2-variations');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+	font-family: 'Coming Soon';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 400;
+	src:
+		url(https://cdn.jsdelivr.net/fontsource/fonts/coming-soon@latest/latin-400-normal.woff2)
+			format('woff2'),
+		url(https://cdn.jsdelivr.net/fontsource/fonts/coming-soon@latest/latin-400-normal.woff)
+			format('woff');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@theme {
+	--font-sans:
+		'Mona Sans Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+		'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+	--font-handwriting: 'Coming Soon', cursive;
+
+	--color-primary-50: var(--color-pink-50);
+	--color-primary-100: var(--color-pink-100);
+	--color-primary-200: var(--color-pink-200);
+	--color-primary-300: var(--color-pink-300);
+	--color-primary-400: var(--color-pink-400);
+	--color-primary-500: var(--color-pink-500);
+	--color-primary-600: var(--color-pink-600);
+	--color-primary-700: var(--color-pink-700);
+	--color-primary-800: var(--color-pink-800);
+	--color-primary-900: var(--color-pink-900);
+	--color-primary-950: var(--color-pink-950);
+
+	--color-gray-50: var(--color-zinc-50);
+	--color-gray-100: var(--color-zinc-100);
+	--color-gray-200: var(--color-zinc-200);
+	--color-gray-300: var(--color-zinc-300);
+	--color-gray-400: var(--color-zinc-400);
+	--color-gray-500: var(--color-zinc-500);
+	--color-gray-600: var(--color-zinc-600);
+	--color-gray-700: var(--color-zinc-700);
+	--color-gray-800: var(--color-zinc-800);
+	--color-gray-900: var(--color-zinc-900);
+	--color-gray-950: var(--color-zinc-950);
+
+	--color-error-50: var(--color-red-50);
+	--color-error-100: var(--color-red-100);
+	--color-error-200: var(--color-red-200);
+	--color-error-300: var(--color-red-300);
+	--color-error-400: var(--color-red-400);
+	--color-error-500: var(--color-red-500);
+	--color-error-600: var(--color-red-600);
+	--color-error-700: var(--color-red-700);
+	--color-error-800: var(--color-red-800);
+	--color-error-900: var(--color-red-900);
+	--color-error-950: var(--color-red-950);
+
+	--color-success-50: var(--color-emerald-50);
+	--color-success-100: var(--color-emerald-100);
+	--color-success-200: var(--color-emerald-200);
+	--color-success-300: var(--color-emerald-300);
+	--color-success-400: var(--color-emerald-400);
+	--color-success-500: var(--color-emerald-500);
+	--color-success-600: var(--color-emerald-600);
+	--color-success-700: var(--color-emerald-700);
+	--color-success-800: var(--color-emerald-800);
+	--color-success-900: var(--color-emerald-900);
+	--color-success-950: var(--color-emerald-950);
+
+	--color-info-50: var(--color-blue-50);
+	--color-info-100: var(--color-blue-100);
+	--color-info-200: var(--color-blue-200);
+	--color-info-300: var(--color-blue-300);
+	--color-info-400: var(--color-blue-400);
+	--color-info-500: var(--color-blue-500);
+	--color-info-600: var(--color-blue-600);
+	--color-info-700: var(--color-blue-700);
+	--color-info-800: var(--color-blue-800);
+	--color-info-900: var(--color-blue-900);
+	--color-info-950: var(--color-blue-950);
+
+	--color-warning-50: var(--color-amber-50);
+	--color-warning-100: var(--color-amber-100);
+	--color-warning-200: var(--color-amber-200);
+	--color-warning-300: var(--color-amber-300);
+	--color-warning-400: var(--color-amber-400);
+	--color-warning-500: var(--color-amber-500);
+	--color-warning-600: var(--color-amber-600);
+	--color-warning-700: var(--color-amber-700);
+	--color-warning-800: var(--color-amber-800);
+	--color-warning-900: var(--color-amber-900);
+	--color-warning-950: var(--color-amber-950);
+}
+
+@layer base {
+	p,
+	input,
+	select,
+	textarea,
+	li {
+		@apply leading-relaxed text-gray-600;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply -tracking-wider text-gray-800;
+	}
+}
+
+@layer components {
+	.inner {
+		@apply mx-auto w-9/10 max-w-300;
+	}
+}
+
+@keyframes down {
+	0% {
+		transform: translateY(-100%);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+.animate-down {
+	animation: down 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
