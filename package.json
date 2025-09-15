@@ -16,6 +16,7 @@
 		"@tailwindcss/typography": "^0.5.16",
 		"@tailwindcss/vite": "^4.1.13",
 		"@types/node": "^22.18.3",
+		"argon2": "^0.44.0",
 		"bits-ui": "^2.9.8",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",

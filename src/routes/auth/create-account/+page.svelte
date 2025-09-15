@@ -7,14 +7,16 @@
 	import ButtonLink from '$components/ui/button-link.svelte';
 	import { superForm } from 'sveltekit-superforms';
 	import { valibotClient } from 'sveltekit-superforms/adapters';
-	import { CreateAccountSchema, UsernameSchema } from './shared';
+	import { CreateAccountSchema, UsernameSchema } from './lib';
 	import { useDebounce } from 'runed';
 	import * as v from 'valibot';
 	import { cn } from '$lib/client/cn';
+	import Alert from '$components/ui/alert.svelte';
 
 	let { data } = $props();
 
-	let usernameState = $state('UNTOUCHED');
+	let usernameState: 'UNTOUCHED' | 'CHECKING' | 'INVALID' | 'AVAILABLE' | 'UNAVAILABLE' =
+		$state('UNTOUCHED');
 
 	let passwordRequirements = $derived([
 		{
@@ -47,34 +49,32 @@
 		return passwordRequirements.every((req) => req.valid) && usernameState === 'AVAILABLE';
 	});
 
-	const { form, errors, message, enhance } = superForm(data.form, {
+	const { form, message, enhance, submitting } = superForm(data.form, {
 		validators: valibotClient(CreateAccountSchema),
 		validationMethod: 'onsubmit'
 	});
 
-	const usernameCheck = useDebounce(
+	const debouncedCheck = useDebounce(
 		async (username: string) => {
-			if (!v.safeParse(UsernameSchema, username).success) {
-				usernameState = 'INVALID';
-				return;
-			}
-
 			const response = await fetch('/api/check-username', {
 				method: 'POST',
 				body: JSON.stringify({ username })
 			});
-
-			const { isAvailable } = await response.json();
-			usernameState = isAvailable ? 'AVAILABLE' : 'UNAVAILABLE';
+			return (await response.json()).isAvailable;
 		},
 		() => 300
 	);
 
 	const handleChangeUsername = async (e: Event) => {
-		const input = e.target as HTMLInputElement;
-		const username = input.value;
+		const value = (e.target as HTMLInputElement).value;
 
-		usernameCheck(username);
+		if (!v.safeParse(UsernameSchema, value).success) {
+			usernameState = 'INVALID';
+			return;
+		}
+
+		usernameState = 'CHECKING';
+		usernameState = (await debouncedCheck(value)) ? 'AVAILABLE' : 'UNAVAILABLE';
 	};
 
 	const handleChangePassword = (e: Event) => {
@@ -101,6 +101,9 @@
 			<h1 class="mt-4 mb-2 text-3xl">Welcome</h1>
 			<p>Let’s get you set up — it’s quick.</p>
 			<hr class="my-6 w-full border-t border-dashed border-gray-300" />
+			{#if $message}
+				<Alert message={$message} class="mb-4" />
+			{/if}
 			<form class="flex w-full flex-col gap-y-4" method="POST" use:enhance>
 				<div class="flex flex-col gap-2">
 					<label for="username" class="font-medium">Pick a username</label>
@@ -109,7 +112,6 @@
 							type="text"
 							id="username"
 							name="username"
-							aria-invalid={$errors.username ? 'true' : undefined}
 							class="peer h-14 w-full rounded-xl border border-gray-300 pr-4 pl-12 transition-all focus:border-primary-600 focus:outline-none"
 							placeholder="e.g. cooldev123"
 							{@attach squircle()}
@@ -121,7 +123,7 @@
 							class="absolute top-1/2 left-4 size-6 -translate-y-1/2 text-gray-400 transition-all peer-focus:text-primary-600"
 						/>
 					</div>
-					{#if usernameCheck.pending}
+					{#if usernameState === 'CHECKING'}
 						<div class="flex items-center gap-1">
 							<Icon
 								icon="solar:black-hole-3-bold-duotone"
@@ -146,9 +148,6 @@
 						Username must be 2–32 chars, can include letters, numbers, underscore or full stops, no
 						spaces or repeating dots.
 					</p>
-					{#if $errors.username}
-						<span class="text-error-600">{$errors.username}</span>
-					{/if}
 				</div>
 				<div class="flex flex-col gap-2">
 					<label for="password" class="font-medium">Create a password</label>
@@ -157,7 +156,6 @@
 							type="password"
 							id="password"
 							name="password"
-							aria-invalid={$errors.password ? 'true' : undefined}
 							class="peer h-14 w-full rounded-xl border border-gray-300 px-12 transition-all focus:border-primary-600 focus:outline-none"
 							placeholder="••••••••"
 							{@attach squircle()}
@@ -198,9 +196,13 @@
 						{/each}
 					</div>
 				</div>
-				<Button disabled={!buttonActive}>
+				<Button disabled={!buttonActive || $submitting}>
 					Create my account
-					<Icon icon="solar:map-arrow-right-bold-duotone" />
+					{#if $submitting}
+						<Icon class="animate-spin" icon="solar:black-hole-3-bold-duotone" />
+					{:else}
+						<Icon icon="solar:map-arrow-right-bold-duotone" />
+					{/if}
 				</Button>
 				<div class="flex items-center gap-2 text-sm font-medium whitespace-nowrap text-gray-500">
 					<hr class="my-6 w-full border-t border-dashed border-gray-300" />

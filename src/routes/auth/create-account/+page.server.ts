@@ -1,8 +1,12 @@
-import { fail } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms';
 import { valibot } from 'sveltekit-superforms/adapters';
 import { message } from 'sveltekit-superforms';
-import { CreateAccountSchema } from './shared';
+import { CreateAccountSchema } from './lib';
+import { createUser } from '$lib/server/repositories/users';
+import { generateRandomString } from '$lib/server/utils/common';
+import { NODE_ENV } from '$env/static/private';
+import { createSession } from '$lib/server/repositories/sessions';
+import { redirect } from '@sveltejs/kit';
 
 export const load = async () => {
 	const form = await superValidate(valibot(CreateAccountSchema));
@@ -11,14 +15,51 @@ export const load = async () => {
 };
 
 export const actions = {
-	default: async ({ request }) => {
+	default: async ({ request, cookies }) => {
 		const form = await superValidate(request, valibot(CreateAccountSchema));
-		console.log(form);
 
 		if (!form.valid) {
-			return fail(400, { form });
+			return message(form, {
+				type: 'error',
+				title: 'Oops, something’s missing',
+				description: 'Make sure your username and passwords look right before continuing'
+			});
 		}
 
-		return message(form, 'Form posted successfully!');
+		try {
+			const newUser = await createUser(form.data);
+
+			const token = generateRandomString();
+			const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+
+			const userAgent = request.headers.get('user-agent') || 'unknown';
+			const xff = request.headers.get('x-forwarded-for');
+			const ipAddress = xff ? xff.split(',')[0].trim() : 'unknown';
+
+			await createSession({
+				token,
+				expiresAt,
+				userId: newUser.id,
+				userAgent,
+				ipAddress
+			});
+
+			cookies.set('cfauth', token, {
+				path: '/',
+				httpOnly: true,
+				secure: NODE_ENV === 'production',
+				sameSite: 'strict',
+				maxAge: 30 * 24 * 60 * 60
+			});
+		} catch (error) {
+			console.log('[CREATE_ACCOUNT_ERROR]', error);
+			return message(form, {
+				type: 'error',
+				title: 'Oops, something went wrong',
+				description: 'We had a hiccup on our side. Try again in a moment.'
+			});
+		}
+
+		return redirect(302, '/');
 	}
 };
