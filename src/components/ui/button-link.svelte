@@ -1,9 +1,9 @@
 <script lang="ts">
+	import { squircle } from '$lib/client/attachments';
 	import { cn } from '$lib/client/cn';
+	import { buttonVariant } from './button.svelte';
 	import { type VariantProps } from 'class-variance-authority';
 	import type { HTMLAnchorAttributes } from 'svelte/elements';
-	import { buttonVariant } from './button.svelte';
-	import { squircle } from '$lib/client/attachments';
 
 	type ButtonProps = HTMLAnchorAttributes &
 		VariantProps<typeof buttonVariant> & {

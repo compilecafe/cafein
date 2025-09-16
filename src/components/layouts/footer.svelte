@@ -1,6 +1,6 @@
 <script lang="ts">
-	import LogoLightWordmark from '$components/brand/logo-light-wordmark.svelte';
 	import noiseBg from '$assets/noise.png';
+	import LogoLightWordmark from '$components/brand/logo-light-wordmark.svelte';
 </script>
 
 <footer

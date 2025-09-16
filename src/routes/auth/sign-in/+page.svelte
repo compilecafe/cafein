@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Icon from '$components/ui/icon.svelte';
 	import noiseBg from '$assets/noise.png';
-	import { squircle } from '$lib/client/attachments';
 	import LogoDarkWordmark from '$components/brand/logo-dark-wordmark.svelte';
 	import ButtonLink from '$components/ui/button-link.svelte';
 	import Button from '$components/ui/button.svelte';
+	import Icon from '$components/ui/icon.svelte';
+	import { squircle } from '$lib/client/attachments';
 </script>
 
 <div

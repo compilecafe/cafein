@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Icon from '$components/ui/icon.svelte';
 	import noiseBg from '$assets/noise.png';
-	import { squircle } from '$lib/client/attachments';
 	import ButtonLink from '$components/ui/button-link.svelte';
+	import Icon from '$components/ui/icon.svelte';
+	import { squircle } from '$lib/client/attachments';
 </script>
 
 <main

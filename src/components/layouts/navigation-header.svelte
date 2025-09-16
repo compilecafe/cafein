@@ -1,8 +1,8 @@
 <script lang="ts">
-	import LogoLightWordmark from '../brand/logo-light-wordmark.svelte';
 	import Icon from '$components/ui/icon.svelte';
-	import { onMount } from 'svelte';
 	import { cn } from '$lib/client/cn';
+	import LogoLightWordmark from '../brand/logo-light-wordmark.svelte';
+	import { onMount } from 'svelte';
 
 	let scrolled = $state(false);
 

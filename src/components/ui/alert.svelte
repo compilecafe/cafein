@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { squircle } from '$lib/client/attachments';
-	import type { SvelteHTMLElements } from 'svelte/elements';
-	import Icon from './icon.svelte';
 	import { cn } from '$lib/client/cn';
+	import Icon from './icon.svelte';
+	import type { SvelteHTMLElements } from 'svelte/elements';
 
 	let {
 		message,

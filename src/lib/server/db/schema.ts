@@ -1,6 +1,6 @@
-import { pgTable, varchar, pgEnum, timestamp, boolean } from 'drizzle-orm/pg-core';
-import { createId } from '@paralleldrive/cuid2';
 import { timestamps } from './helpers';
+import { createId } from '@paralleldrive/cuid2';
+import { pgTable, varchar, pgEnum, timestamp, boolean } from 'drizzle-orm/pg-core';
 
 export const userStatusEnum = pgEnum('status', ['active', 'inactive']);
 
