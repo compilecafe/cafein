@@ -1,7 +1,7 @@
 <script module>
 	export const buttonVariant = cva(
 		[
-			'inline-flex h-14 items-center justify-center gap-2 rounded-xl px-6 font-medium transition-all [&>svg]:size-6'
+			'inline-flex h-14 items-center whitespace-nowrap justify-center gap-2 rounded-xl px-6 font-medium transition-all [&>svg]:size-6'
 		],
 		{
 			variants: {

@@ -60,6 +60,6 @@ export const actions = {
 			});
 		}
 
-		return redirect(302, '/');
+		return redirect(302, '/account');
 	}
 };
