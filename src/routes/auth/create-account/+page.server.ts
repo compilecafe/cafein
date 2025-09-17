@@ -1,12 +1,12 @@
-import { superValidate } from 'sveltekit-superforms';
-import { valibot } from 'sveltekit-superforms/adapters';
-import { message } from 'sveltekit-superforms';
-import { CreateAccountSchema } from './lib';
-import { createUser } from '$lib/server/repositories/users';
-import { generateRandomString } from '$lib/server/utils/common';
 import { NODE_ENV } from '$env/static/private';
 import { createSession } from '$lib/server/repositories/sessions';
+import { createUser } from '$lib/server/repositories/users';
+import { generateRandomString } from '$lib/server/utils/common';
+import { CreateAccountSchema } from './lib';
 import { redirect } from '@sveltejs/kit';
+import { superValidate } from 'sveltekit-superforms';
+import { message } from 'sveltekit-superforms';
+import { valibot } from 'sveltekit-superforms/adapters';
 
 export const load = async () => {
 	const form = await superValidate(valibot(CreateAccountSchema));

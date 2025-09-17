@@ -42,7 +42,6 @@
 
 <script lang="ts">
 	import { squircle } from '$lib/client/attachments';
-
 	import { cn } from '$lib/client/cn';
 	import { cva, type VariantProps } from 'class-variance-authority';
 	import type { HTMLButtonAttributes } from 'svelte/elements';

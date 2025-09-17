@@ -1,5 +1,5 @@
-import type { Attachment } from 'svelte/attachments';
 import { getSvgPath } from 'figma-squircle';
+import type { Attachment } from 'svelte/attachments';
 
 export function squircle(radius: number = 12): Attachment {
 	return (element) => {

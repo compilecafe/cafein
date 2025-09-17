@@ -1,17 +1,17 @@
 <script lang="ts">
-	import Icon from '$components/ui/icon.svelte';
 	import noiseBg from '$assets/noise.png';
-	import { showPassword, squircle } from '$lib/client/attachments';
 	import LogoDarkWordmark from '$components/brand/logo-dark-wordmark.svelte';
-	import Button from '$components/ui/button.svelte';
+	import Alert from '$components/ui/alert.svelte';
 	import ButtonLink from '$components/ui/button-link.svelte';
-	import { superForm } from 'sveltekit-superforms';
-	import { valibotClient } from 'sveltekit-superforms/adapters';
+	import Button from '$components/ui/button.svelte';
+	import Icon from '$components/ui/icon.svelte';
+	import { showPassword, squircle } from '$lib/client/attachments';
+	import { cn } from '$lib/client/cn';
 	import { CreateAccountSchema, UsernameSchema } from './lib';
 	import { useDebounce } from 'runed';
+	import { superForm } from 'sveltekit-superforms';
+	import { valibotClient } from 'sveltekit-superforms/adapters';
 	import * as v from 'valibot';
-	import { cn } from '$lib/client/cn';
-	import Alert from '$components/ui/alert.svelte';
 
 	let { data } = $props();
 

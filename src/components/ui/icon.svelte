@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Icon from '@iconify/svelte';
-	import { icons as solarIcons } from '@iconify-json/solar';
 	import { icons as lineMdIcons } from '@iconify-json/line-md';
+	import { icons as solarIcons } from '@iconify-json/solar';
+	import Icon from '@iconify/svelte';
 
 	let { icon, ...rest } = $props();
 

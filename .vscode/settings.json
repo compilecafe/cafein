@@ -1,4 +1,4 @@
 {
-    "kiroAgent.configureMCP": "Enabled",
-    "tailwindCSS.classFunctions": ["cva", "cx"]
+	"kiroAgent.configureMCP": "Enabled",
+	"tailwindCSS.classFunctions": ["cva", "cx"]
 }

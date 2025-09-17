@@ -1,6 +1,6 @@
-import { json } from '@sveltejs/kit';
-import type { RequestHandler } from './$types';
 import { checkUsername } from '$lib/server/repositories/users';
+import type { RequestHandler } from './$types';
+import { json } from '@sveltejs/kit';
 
 export const POST: RequestHandler = async ({ request }) => {
 	const { username } = await request.json();
