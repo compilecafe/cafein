@@ -14,7 +14,10 @@ const config = {
 			$assets: 'src/assets'
 		}
 	},
-	extensions: ['.svelte', '.svx']
+	extensions: ['.svelte', '.svx'],
+	vitePlugin: {
+		inspector: true
+	}
 };
 
 export default config;

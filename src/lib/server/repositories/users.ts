@@ -25,3 +25,12 @@ export const checkUsername = async (username: string) => {
 
 	return result.length > 0;
 };
+
+export const getUserByUsername = async (username: string) => {
+	const result = await db
+		.select()
+		.from(usersTable)
+		.where(eq(usersTable.username, username))
+		.limit(1);
+	return result[0];
+};
