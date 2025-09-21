@@ -2,18 +2,13 @@ import { db } from '../db';
 import { sessionsTable, usersTable, type InsertSession } from '../db/schema';
 import { and, desc, eq, gt } from 'drizzle-orm';
 
-export const getActiveSessionsForUser = async (userId: string) => {
+export const getRecentSessionsForUser = async (userId: string) => {
 	const result = await db
 		.select()
 		.from(sessionsTable)
-		.where(
-			and(
-				eq(sessionsTable.revoked, false),
-				gt(sessionsTable.expiresAt, new Date()),
-				eq(sessionsTable.userId, userId)
-			)
-		)
-		.orderBy(desc(sessionsTable.createdAt));
+		.where(and(eq(sessionsTable.userId, userId)))
+		.orderBy(desc(sessionsTable.createdAt))
+		.limit(8);
 	return result;
 };
 
