@@ -17,6 +17,7 @@
 <div class="relative">
 	<input
 		{type}
+		autocomplete="off"
 		bind:value
 		class={cn(
 			'peer h-14 w-full rounded-xl border border-gray-300 pr-4 pl-12 transition-all focus:border-primary-600 focus:outline-none',
