@@ -5,7 +5,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const token = event.cookies.get('cfauth');
 	if (token) {
 		const user = await getUserBySession(token);
-		if (user) event.locals.user = user;
+		if (user) event.locals.session = user;
 	}
 	const response = await resolve(event);
 	return response;

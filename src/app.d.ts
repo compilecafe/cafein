@@ -1,13 +1,12 @@
 // See https://svelte.dev/docs/kit/types#app.d.ts
-
-import type { SelectUser } from '$lib/server/db/schema';
+import type { SelectSession, SelectUser } from '$lib/server/db/schema';
 
 // for information about these interfaces
 declare global {
 	namespace App {
 		// interface Error {}
 		interface Locals {
-			user?: SelectUser;
+			session?: { users: SelectUser; sessions: SelectSession };
 		}
 		// interface PageData {}
 		// interface PageState {}
