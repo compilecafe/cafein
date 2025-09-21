@@ -1,9 +1,18 @@
 <script lang="ts">
-	import LogoDarkWordmark from '$components/brand/logo-dark-wordmark.svelte';
-	import { squircle } from '$lib/client/attachments';
 	import noiseBg from '$assets/noise.png';
-	import Icon from '$components/ui/icon.svelte';
+	import LogoDarkWordmark from '$components/brand/logo-dark-wordmark.svelte';
 	import Button from '$components/ui/button.svelte';
+	import Icon from '$components/ui/icon.svelte';
+	import { squircle } from '$lib/client/attachments';
+	import { ua } from '$lib/shared/utils/ua';
+
+	let { data } = $props();
+
+	const sessionIcons = {
+		mobile: 'solar:smartphone-bold-duotone',
+		tablet: 'solar:tablet-bold-duotone',
+		desktop: 'solar:laptop-bold-duotone'
+	};
 </script>
 
 <header class="fixed inset-x-0 top-0 z-50 bg-white/40 backdrop-blur-xl">
@@ -144,138 +153,40 @@
 				<h2 class="mb-2 text-3xl">Your active session</h2>
 				<p>You’re currently signed in on this device.</p>
 				<div class="mt-8 space-y-4">
-					<div class="flex gap-4" {@attach squircle(12)}>
-						<div
-							class="grid size-12 shrink-0 place-items-center rounded-xl bg-white"
-							{@attach squircle(16)}
-						>
-							<Icon class="text-2xl text-gray-600" icon="solar:laptop-bold-duotone" />
-						</div>
-						<div class="w-full">
-							<span class="flex items-center gap-2 text-sm font-medium text-gray-600">
-								Sign in at 19 Jan 2025
-								<span
-									class="inline-block rounded-full bg-success-600 px-2 py-0.5 text-xs font-medium text-success-100"
-								>
-									Current
-								</span></span
+					{#each data.sessions as session}
+						<div class="flex gap-4" {@attach squircle(12)}>
+							<div
+								class="grid size-12 shrink-0 place-items-center rounded-xl bg-white"
+								title={ua(session.userAgent).device.type}
+								{@attach squircle(16)}
 							>
-							<h3 class="flex items-center gap-1 text-xl">Safari on Macos</h3>
-							<p>Last used: 19 Jan 2025</p>
+								<Icon
+									class="text-2xl text-gray-600"
+									icon={sessionIcons[
+										ua(session.userAgent).device.type as keyof typeof sessionIcons
+									]}
+								/>
+							</div>
+							<div class="w-full">
+								<span class="flex items-center gap-2 text-sm font-medium text-gray-600">
+									Sign in at {session.createdAt.toLocaleString()}
+									{#if session.token === data.currentSession}
+										<span
+											class="inline-block rounded-full bg-success-600 px-2 py-0.5 text-xs font-medium text-success-100"
+										>
+											Current
+										</span>
+									{/if}
+								</span>
+								<h3 class="flex items-center gap-1 text-xl">
+									{ua(session.userAgent).browser} on
+									{ua(session.userAgent).os}
+								</h3>
+							</div>
+							<Button intent="ghost-error" size="sm">Sign out</Button>
 						</div>
-						<Button intent="ghost">Sign out</Button>
-					</div>
-					<hr class="block border-t border-dashed border-gray-400" />
-					<div class="flex gap-4" {@attach squircle(12)}>
-						<div
-							class="grid size-12 shrink-0 place-items-center rounded-xl bg-white"
-							{@attach squircle(16)}
-						>
-							<Icon class="text-2xl text-gray-600" icon="solar:laptop-bold-duotone" />
-						</div>
-						<div class="w-full">
-							<span class="flex items-center gap-2 text-sm font-medium text-gray-600">
-								Sign in at 19 Jan 2025
-								<span
-									class="inline-block rounded-full bg-success-600 px-2 py-0.5 text-xs font-medium text-success-100"
-								>
-									Current
-								</span></span
-							>
-							<h3 class="flex items-center gap-1 text-xl">Safari on Macos</h3>
-							<p>Last used: 19 Jan 2025</p>
-						</div>
-						<Button intent="ghost">Sign out</Button>
-					</div>
-					<hr class="block border-t border-dashed border-gray-400" />
-					<div class="flex gap-4" {@attach squircle(12)}>
-						<div
-							class="grid size-12 shrink-0 place-items-center rounded-xl bg-white"
-							{@attach squircle(16)}
-						>
-							<Icon class="text-2xl text-gray-600" icon="solar:laptop-bold-duotone" />
-						</div>
-						<div class="w-full">
-							<span class="flex items-center gap-2 text-sm font-medium text-gray-600">
-								Sign in at 19 Jan 2025
-								<span
-									class="inline-block rounded-full bg-success-600 px-2 py-0.5 text-xs font-medium text-success-100"
-								>
-									Current
-								</span></span
-							>
-							<h3 class="flex items-center gap-1 text-xl">Safari on Macos</h3>
-							<p>Last used: 19 Jan 2025</p>
-						</div>
-						<Button intent="ghost">Sign out</Button>
-					</div>
-					<hr class="block border-t border-dashed border-gray-400" />
-					<div class="flex gap-4" {@attach squircle(12)}>
-						<div
-							class="grid size-12 shrink-0 place-items-center rounded-xl bg-white"
-							{@attach squircle(16)}
-						>
-							<Icon class="text-2xl text-gray-600" icon="solar:laptop-bold-duotone" />
-						</div>
-						<div class="w-full">
-							<span class="flex items-center gap-2 text-sm font-medium text-gray-600">
-								Sign in at 19 Jan 2025
-								<span
-									class="inline-block rounded-full bg-success-600 px-2 py-0.5 text-xs font-medium text-success-100"
-								>
-									Current
-								</span></span
-							>
-							<h3 class="flex items-center gap-1 text-xl">Safari on Macos</h3>
-							<p>Last used: 19 Jan 2025</p>
-						</div>
-						<Button intent="ghost">Sign out</Button>
-					</div>
-					<hr class="block border-t border-dashed border-gray-400" />
-					<div class="flex gap-4" {@attach squircle(12)}>
-						<div
-							class="grid size-12 shrink-0 place-items-center rounded-xl bg-white"
-							{@attach squircle(16)}
-						>
-							<Icon class="text-2xl text-gray-600" icon="solar:laptop-bold-duotone" />
-						</div>
-						<div class="w-full">
-							<span class="flex items-center gap-2 text-sm font-medium text-gray-600">
-								Sign in at 19 Jan 2025
-								<span
-									class="inline-block rounded-full bg-success-600 px-2 py-0.5 text-xs font-medium text-success-100"
-								>
-									Current
-								</span></span
-							>
-							<h3 class="flex items-center gap-1 text-xl">Safari on Macos</h3>
-							<p>Last used: 19 Jan 2025</p>
-						</div>
-						<Button intent="ghost">Sign out</Button>
-					</div>
-					<hr class="block border-t border-dashed border-gray-400" />
-					<div class="flex gap-4" {@attach squircle(12)}>
-						<div
-							class="grid size-12 shrink-0 place-items-center rounded-xl bg-white"
-							{@attach squircle(16)}
-						>
-							<Icon class="text-2xl text-gray-600" icon="solar:laptop-bold-duotone" />
-						</div>
-						<div class="w-full">
-							<span class="flex items-center gap-2 text-sm font-medium text-gray-600">
-								Sign in at 19 Jan 2025
-								<span
-									class="inline-block rounded-full bg-success-600 px-2 py-0.5 text-xs font-medium text-success-100"
-								>
-									Current
-								</span></span
-							>
-							<h3 class="flex items-center gap-1 text-xl">Safari on Macos</h3>
-							<p>Last used: 19 Jan 2025</p>
-						</div>
-						<Button intent="ghost">Sign out</Button>
-					</div>
-					<hr class="block border-t border-dashed border-gray-400" />
+						<hr class="block border-t border-dashed border-gray-400" />
+					{/each}
 					<Button>Show all sessions</Button>
 				</div>
 			</div>
