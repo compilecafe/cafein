@@ -8,10 +8,14 @@
 
 	let { data } = $props();
 
-	const sessionIcons = {
-		mobile: 'solar:smartphone-bold-duotone',
-		tablet: 'solar:tablet-bold-duotone',
-		desktop: 'solar:laptop-bold-duotone'
+	const getSessionIcon = (type?: string) => {
+		const sessionIcons = {
+			mobile: 'solar:smartphone-bold-duotone',
+			tablet: 'solar:tablet-bold-duotone',
+			else: 'solar:laptop-bold-duotone'
+		};
+
+		return sessionIcons[type as keyof typeof sessionIcons] || sessionIcons.else;
 	};
 </script>
 
@@ -150,8 +154,8 @@
 				</div>
 			</div>
 			<div>
-				<h2 class="mb-2 text-3xl">Your active session</h2>
-				<p>You’re currently signed in on this device.</p>
+				<h2 class="mb-2 text-3xl">Where you’re signed in</h2>
+				<p>See where and when your account’s been used.</p>
 				<div class="mt-8 space-y-4">
 					{#each data.sessions as session}
 						<div class="flex gap-4" {@attach squircle(12)}>
@@ -162,9 +166,7 @@
 							>
 								<Icon
 									class="text-2xl text-gray-600"
-									icon={sessionIcons[
-										ua(session.userAgent).device.type as keyof typeof sessionIcons
-									]}
+									icon={getSessionIcon(ua(session.userAgent).device.type)}
 								/>
 							</div>
 							<div class="w-full">
@@ -183,11 +185,17 @@
 									{ua(session.userAgent).os}
 								</h3>
 							</div>
-							<Button intent="ghost-error" size="sm">Sign out</Button>
+							{#if !session.revoked && session.expiresAt > new Date()}
+								<Button intent="ghost-error" size="sm">Revoke</Button>
+							{:else if session.revoked}
+								<span class="flex items-center gap-1 px-4 text-sm text-gray-600">Revoked</span>
+							{:else}
+								<span class="flex items-center gap-1 px-4 text-sm text-gray-600">Expired</span>
+							{/if}
 						</div>
 						<hr class="block border-t border-dashed border-gray-400" />
 					{/each}
-					<Button>Show all sessions</Button>
+					<Button>View all sessions</Button>
 				</div>
 			</div>
 		</div>
