@@ -29,7 +29,7 @@ export const sessionsTable = pgTable('sessions', {
 		.notNull()
 		.references(() => usersTable.id),
 	token: varchar('token', { length: 255 }).unique().notNull(),
-	userAgent: varchar('user_agent', { length: 255 }),
+	userAgent: varchar('user_agent', { length: 255 }).notNull(),
 	ipAddress: varchar('ip_address', { length: 255 }),
 	createdAt: timestamp('created_at').defaultNow().notNull(),
 	expiresAt: timestamp('expires_at').notNull(),
