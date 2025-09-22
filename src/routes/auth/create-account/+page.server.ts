@@ -34,7 +34,7 @@ export const actions = {
 
 			const userAgent = request.headers.get('user-agent') || 'unknown';
 			const xff = request.headers.get('x-forwarded-for');
-			const ipAddress = xff ? xff.split(',')[0].trim() : 'unknown';
+			const ipAddress = xff ? xff.split(',')[0]?.trim() : 'unknown';
 
 			await createSession({
 				token,
