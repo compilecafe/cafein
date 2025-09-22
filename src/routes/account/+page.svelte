@@ -50,6 +50,12 @@
 				>
 					Developer
 				</a>
+				<button class="group relative">
+					<div
+						class="pointer-events-none absolute -inset-2 -scale-50 rounded-full border-2 border-dashed border-white opacity-0 transition-all duration-500 ease-bounce group-hover:scale-100 group-hover:animate-[spin_5s_ease-in-out_infinite] group-hover:opacity-100"
+					></div>
+					<img class="size-10" src="https://avatar.iran.liara.run/public/14" alt="" />
+				</button>
 			</div>
 		</div>
 	</div>

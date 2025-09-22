@@ -109,6 +109,8 @@
 	--color-warning-800: var(--color-amber-800);
 	--color-warning-900: var(--color-amber-900);
 	--color-warning-950: var(--color-amber-950);
+
+	--ease-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 @layer base {
